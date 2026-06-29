@@ -549,6 +549,13 @@ const SEG_LABELS={despesa_fixa:'Fixa pessoal',despesa_casa:'Casa',cartao_nubank:
 const CAT_COLORS={'saúde':'#e34948','vestuário':'#eb6834','transporte':'#1baf7a','assinatura':'#4a3aa7','comida e bebidas':'#eda100','apartamento':'#A0784A','gabriel':'#2a78d6','outros':'#898781'};
 
 let curMonth=new Date().getMonth(), curYear=new Date().getFullYear();
+  const SUPABASE_URL = "https://wurtuqebuugziiivdkea.supabase.co";
+const SUPABASE_KEY = "sb_publishable_mmg5ZHVyQ0ariPNUkjPtDA_gJQHuR-3";
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 let transactions=JSON.parse(localStorage.getItem('fin_tx4')||'[]');
 let config=JSON.parse(localStorage.getItem('fin_cfg4')||'{"nu":24050,"br":5000}');
 let charts={};
