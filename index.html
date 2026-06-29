@@ -600,7 +600,7 @@ async function salvarTransacoes(lista) {
             dados: lista
         });
 }
-let transactions=JSON.parse(localStorage.getItem('fin_tx4')||'[]');
+let transactions = [];
 let config=JSON.parse(localStorage.getItem('fin_cfg4')||'{"nu":24050,"br":5000}');
 let charts={};
 let pagType='unico', editPagType='unico';
