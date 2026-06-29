@@ -676,7 +676,9 @@ function setEditPagType(t){
 }
 
 // ── CORE ─────────────────────────────────────────────────────────
-function save(){localStorage.setItem('fin_tx4',JSON.stringify(transactions));}
+async function save() {
+    await salvarTransacoes(transactions);
+}
 function fmt(v){return'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
 function getValMes(t,targetM,targetY){
@@ -1195,8 +1197,17 @@ function importNubank(){
 
     await loginAutomatico();
 
+    (async () => {
+
+    await loginAutomatico();
+
+    transactions = await carregarTransacoes();
+
     updateMonthLabels();
+
     renderAll();
+
+})();
 
 })();
 </script>
