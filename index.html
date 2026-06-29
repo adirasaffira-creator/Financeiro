@@ -556,6 +556,24 @@ const supabase = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+  const EMAIL = "adira.saffira@gmail.com";
+const PASSWORD = "Milkinh@0209";
+
+async function loginAutomatico(){
+
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if(session) return;
+
+    const { error } = await supabase.auth.signInWithPassword({
+        email: EMAIL,
+        password: PASSWORD
+    });
+
+    if(error){
+        console.error(error.message);
+    }
+}
 let transactions=JSON.parse(localStorage.getItem('fin_tx4')||'[]');
 let config=JSON.parse(localStorage.getItem('fin_cfg4')||'{"nu":24050,"br":5000}');
 let charts={};
@@ -1147,8 +1165,14 @@ function importNubank(){
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
-updateMonthLabels();
-renderAll();
+(async () => {
+
+    await loginAutomatico();
+
+    updateMonthLabels();
+    renderAll();
+
+})();
 </script>
 </body>
 </html>
